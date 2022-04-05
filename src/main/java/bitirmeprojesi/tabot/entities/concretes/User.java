@@ -1,8 +1,7 @@
+
+
 package bitirmeprojesi.tabot.entities.concretes;
-
 import lombok.Data;
-import lombok.Generated;
-
 import javax.persistence.*;
 
 @Data
@@ -32,4 +31,7 @@ public class User {
 
     @Column(name="password")
     private int password;
+
+    @Column(name="department_id")
+    private int departmentId;
 }
