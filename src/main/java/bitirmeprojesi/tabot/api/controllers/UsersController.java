@@ -1,3 +1,6 @@
+
+
+
 package bitirmeprojesi.tabot.api.controllers;
 
 import bitirmeprojesi.tabot.api.dto.LoginDto;
@@ -24,8 +27,11 @@ public class UsersController {
         userService.saveUser(user);
     }
 
-    @PostMapping("/login-user")
-    public ResponseEntity<User> loginUser(@RequestBody LoginDto loginDto){
-       return ResponseEntity.ok(userService.login(loginDto.getUserEmail(),loginDto.getPassword()));
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUser(@PathVariable int id){
+        return ResponseEntity.ok(userService.getUser(id));
     }
+
 }
+
+
