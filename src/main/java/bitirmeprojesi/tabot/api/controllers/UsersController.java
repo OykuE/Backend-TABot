@@ -39,8 +39,6 @@ public class UsersController {
         user.setEmail(registerDto.getEmail());
         user.setLectureId(registerDto.getLectureId());
         user.setDepartmentId(registerDto.getDepartmentId());
-        user.setUserName(registerDto.getUserName());
-        user.setUserName(registerDto.getUserName());
 
         userService.saveUser(user);
         return ResponseEntity.ok("User is saved");
