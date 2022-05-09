@@ -30,5 +30,28 @@ public class UserManager implements UserService {
         return null;
     }
 
+    @Override
+    public User getUser(int id) {
+        return userDao.findById(id).get();
+    }
+
+    @Override
+    public void editProfilePicture(Integer userId, byte[] profilePicture) {
+       if(userDao.findById(userId).isPresent()){
+          User user = userDao.findById(userId).get();
+          user.setProfilePicture(profilePicture);
+          userDao.save(user);
+       }
+    }
+
+    @Override
+    public void changePassword(Integer userId, String password) {
+        if(userDao.findById(userId).isPresent()){
+            User user = userDao.findById(userId).get();
+            user.setPassword(password);
+            userDao.save(user);
+        }
+    }
+
 
 }

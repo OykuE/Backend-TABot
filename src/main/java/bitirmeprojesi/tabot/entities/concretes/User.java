@@ -30,8 +30,12 @@ public class User {
     private String email;
 
     @Column(name="password")
-    private int password;
+    private String password;
 
     @Column(name="department_id")
     private int departmentId;
+
+    @Column(name="profile_picture")
+    private byte[] profilePicture;
+
 }
