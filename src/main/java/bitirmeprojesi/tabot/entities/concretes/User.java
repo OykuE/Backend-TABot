@@ -15,10 +15,10 @@ public class User {
     private int userId;
 
     @Column(name="user_name")
-    private String userName;
+    private String name;
 
     @Column(name="user_surname")
-    private String userSurname;
+    private String surname;
 
     @Column(name="lecture_id")
     private int lectureId;
@@ -27,7 +27,7 @@ public class User {
     private String userType;
 
     @Column(name="user_email")
-    private String email;
+    private String username;
 
     @Column(name="password")
     private String password;

@@ -1,8 +1,9 @@
 package bitirmeprojesi.tabot;
 
-import bitirmeprojesi.tabot.business.concretes.UserManager;
+import bitirmeprojesi.tabot.business.concretes.UserDetailsManager;
 import bitirmeprojesi.tabot.jwt.JwtAuthenticationFilter;
 import bitirmeprojesi.tabot.jwt.JwtAuthorizationFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -14,7 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -36,7 +36,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers(HttpMethod.POST, SIGN_UP_URL)
+        web.ignoring()
+//                .antMatchers(HttpMethod.POST, SIGN_UP_URL)
                 .antMatchers(
                         "/v2/api-docs",
                         "/configuration/ui",
@@ -51,18 +52,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
-                .addFilter(new JwtAuthorizationFilter(authenticationManager()));
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                .and().authorizeRequests()
+//                .anyRequest().authenticated();
+                //.and();
+                //.addFilter(new JwtAuthenticationFilter(authenticationManager()))
+                //.addFilter(new JwtAuthorizationFilter(authenticationManager()));
     }
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-    }
+//    @Override
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+//    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {

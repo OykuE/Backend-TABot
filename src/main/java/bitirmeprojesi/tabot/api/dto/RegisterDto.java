@@ -11,11 +11,11 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterDto {
-    private String userName;
-    private String userSurname;
+    private String name;
+    private String surname;
     private int lectureId;
     private String userType;
-    private String email;
+    private String username;
     private String password;
     private int departmentId;
 }

@@ -22,13 +22,14 @@ public class UserManager implements UserService {
         userDao.save(user);
     }
 
-    @Override
-    public User login(String email, Integer password) {
-        if(userDao.findByEmailAndPassword(email,password).isPresent()){
-            return userDao.findByEmailAndPassword(email,password).get();
+    /*@Override
+    public User login(String username, Integer password) {
+        if(userDao.findByUsernameAndPassword(username,password).isPresent()){
+            return userDao.findByUsernameAndPassword(username,password).get();
         }
         return null;
     }
+    */
 
     @Override
     public User getUser(int id) {
@@ -53,5 +54,18 @@ public class UserManager implements UserService {
         }
     }
 
+    @Override
+    public User login(String userEmail, String password) {
+        if (userDao.findByUsername(userEmail).isPresent()) {
+            User user = userDao.findByUsername(userEmail).get();
+            if (user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
 
-}
+    }
+
+
+

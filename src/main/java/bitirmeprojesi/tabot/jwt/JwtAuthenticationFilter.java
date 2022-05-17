@@ -33,8 +33,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
         try {
-            User authenticationInfos = new ObjectMapper()
-                    .readValue(req.getInputStream(), User.class);
+            bitirmeprojesi.tabot.entities.concretes.User authenticationInfos = new ObjectMapper()
+                    .readValue(req.getInputStream(), bitirmeprojesi.tabot.entities.concretes.User.class);
+
 
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                     authenticationInfos.getUsername(),
@@ -50,7 +51,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
                                             FilterChain chain,
-                                            Authentication auth) throws IOException {
+                                            Authentication auth) throws IOException,ServletException {
 
         String token = JWT.create()
                 .withSubject(((User) auth.getPrincipal()).getUsername())
