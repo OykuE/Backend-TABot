@@ -31,7 +31,7 @@ public class UsersController {
 
     @PostMapping("/save-user")
     public ResponseEntity<?> saveUser(@RequestBody RegisterDto registerDto) {
-        //registerDto.setPassword(bCryptPasswordEncoder.encode(registerDto.getPassword()));
+        registerDto.setPassword(bCryptPasswordEncoder.encode(registerDto.getPassword()));
         User user = new User();
         user.setName(registerDto.getName());
         user.setSurname(registerDto.getSurname());
@@ -58,7 +58,7 @@ public class UsersController {
 
     @PutMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
-        //changePasswordDto.setPassword(bCryptPasswordEncoder.encode(changePasswordDto.getPassword()));
+        changePasswordDto.setPassword(bCryptPasswordEncoder.encode(changePasswordDto.getPassword()));
         userService.changePassword(changePasswordDto.getUserId(), changePasswordDto.getPassword());
         return ResponseEntity.ok("Password changed successfully");
     }

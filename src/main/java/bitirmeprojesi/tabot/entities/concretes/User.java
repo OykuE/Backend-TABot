@@ -23,7 +23,7 @@ public class User {
     @Column(name="lecture_id")
     private int lectureId;
 
-    @Column(name="user_type_İD")
+    @Column(name="user_type_id")
     private int userTypeId;
 
     @Column(name="user_email")

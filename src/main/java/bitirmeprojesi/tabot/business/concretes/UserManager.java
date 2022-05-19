@@ -4,6 +4,7 @@ import bitirmeprojesi.tabot.business.abstracts.UserService;
 import bitirmeprojesi.tabot.dataAccess.UserDao;
 import bitirmeprojesi.tabot.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -56,11 +57,17 @@ public class UserManager implements UserService {
 
     @Override
     public User login(String userEmail, String password) {
+
         if (userDao.findByUsername(userEmail).isPresent()) {
             User user = userDao.findByUsername(userEmail).get();
-            if (user.getPassword().equals(password)) {
+
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                //if (user.getPassword().equals(password)) {
                 return user;
             }
+            //  }
+
         }
         return null;
     }
