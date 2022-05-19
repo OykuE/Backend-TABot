@@ -14,7 +14,7 @@ public class RegisterDto {
     private String name;
     private String surname;
     private int lectureId;
-    private String userType;
+    private int userTypeId;
     private String username;
     private String password;
     private int departmentId;

@@ -35,7 +35,7 @@ public class UsersController {
         User user = new User();
         user.setName(registerDto.getName());
         user.setSurname(registerDto.getSurname());
-        user.setUserType(registerDto.getUserType());
+        user.setUserTypeId(registerDto.getUserTypeId());
         user.setUsername(registerDto.getUsername());
         user.setLectureId(registerDto.getLectureId());
         user.setDepartmentId(registerDto.getDepartmentId());
