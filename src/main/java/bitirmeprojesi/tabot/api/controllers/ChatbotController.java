@@ -24,9 +24,23 @@ public class ChatbotController {
         super();
     }
 
-    @GetMapping("/get-answer-from-ml")
-    public ResponseEntity<Object> getAnswerFromML(String question) throws URISyntaxException {
-        String uriStr = "http://localhost:8080/ml"; //todo ml servisi bağlanacak
+    @GetMapping("/get-answer-from-turkish-ml")
+    public ResponseEntity<Object> getAnswerFromTurML(String question) throws URISyntaxException {
+        String uriStr = "http://localhost:5000/turkish-answering";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        RestTemplate restTemplate = new RestTemplate();
+        URI uri = new URI(uriStr);
+        HttpEntity<Object> httpEntity = new HttpEntity<>(question, headers);
+
+        Object result = restTemplate.postForObject(uri, httpEntity, Object.class);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/get-answer-from-english-ml")
+    public ResponseEntity<Object> getAnswerFromEngML(String question) throws URISyntaxException {
+        String uriStr = "http://localhost:5000/english-answering";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
